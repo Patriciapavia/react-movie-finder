@@ -3,7 +3,7 @@ import DisplayMoviesItem from "./DisplayMoviesItem";
 
 const DisplayMovie = ({ movies, isLoading }) => {
   return isLoading ? (
-    <h1>loading...</h1>
+    <h1></h1>
   ) : (
     <section>
       {movies.map((movie) => (

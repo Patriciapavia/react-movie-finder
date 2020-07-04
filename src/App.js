@@ -1,25 +1,35 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
-import FindMovie from "./FindMovie";
 import DisplayMovie from "./DisplayMovie";
 const App = () => {
   const [movies, setMovies] = useState([]);
   const [isLoading, setIsloading] = useState(true);
 
-  useEffect(() => {
-    const fetchMovie = async () => {
-      const result = await axios(
-        `https://www.omdbapi.com/?s=harry potter&apikey=5bb03fee`
-      );
-      console.log(result.data);
-      setMovies(result.data.Search);
-      setIsloading(false);
-    };
-    fetchMovie();
-  }, []);
+  const [query, setQuery] = useState([]);
+
+  const fetchMovie = async () => {
+    const result = await axios(
+      `https://www.omdbapi.com/?s=${query}&apikey=5bb03fee`
+    );
+    console.log(result.data);
+    setMovies(result.data.Search);
+    setIsloading(false);
+    setQuery("");
+  };
+
+  const search = (e) => {
+    if (e.key === "Enter") {
+      fetchMovie();
+    }
+  };
   return (
     <div>
-      <FindMovie />
+      <input
+        type="text"
+        value={query}
+        onChange={(e) => setQuery(e.target.value)}
+        onKeyPress={search}
+      ></input>
       <DisplayMovie isLoading={isLoading} movies={movies} />
     </div>
   );
