@@ -1,16 +1,20 @@
 import React from "react";
 import DisplayMoviesItem from "./DisplayMoviesItem";
 
-const DisplayMovie = ({ movies, isLoading }) => {
-  return isLoading ? (
-    <h1></h1>
+const DisplayMovie = ({ movies }) => {
+  return movies ? (
+    <section>
+      <div className="row">
+        {movies.map((movie) => (
+          <DisplayMoviesItem key={movie.imdbID} movie={movie}>
+            {" "}
+          </DisplayMoviesItem>
+        ))}
+      </div>
+    </section>
   ) : (
     <section>
-      {movies.map((movie) => (
-        <DisplayMoviesItem key={movie.imdbID} movie={movie}>
-          {" "}
-        </DisplayMoviesItem>
-      ))}
+      <h1>Not Found! Please try different name </h1>
     </section>
   );
 };
