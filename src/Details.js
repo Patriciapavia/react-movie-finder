@@ -64,7 +64,7 @@ const Details = (props) => {
                     href={`https://imdb.com/title/${details.imdbID}`}
                     className="btn btn-primary rounded mx-auto  btn-block"
                   >
-                    View IMDB
+                    See Trailer
                   </a>
 
                   <Link to={`/`} className="btn btn-outline-dark btn-block">
